@@ -7,14 +7,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7956E95D-D53
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{9EA6CF8D-D7FC-43D0-8463-DCFD6353ACBD}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SourceAFIS", "src\SourceAFIS\SourceAFIS.xproj", "{9BC71986-54C2-42DE-BF05-A78B66A8B4BE}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SourceAFIS.Tests", "tests\SourceAFIS.Tests\SourceAFIS.Tests.xproj", "{C0172A3C-F52D-40CB-BCE2-9D792B90620A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5838ADA5-716D-4DA8-8DC8-7810DDE77DC9}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
 	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SourceAFIS.Core", "src\SourceAFIS.Core\SourceAFIS.Core.xproj", "{9BC71986-54C2-42DE-BF05-A78B66A8B4BE}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SourceAFIS.Core.Tests", "tests\SourceAFIS.Core.Tests\SourceAFIS.Core.Tests.xproj", "{C0172A3C-F52D-40CB-BCE2-9D792B90620A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
