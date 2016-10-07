@@ -1,21 +1,22 @@
-version: '1.0.{build}'
+version: '1.8.0.{build}'
 configuration:
-- Debug
 - Release
 platform: Any CPU
 environment: # Don't report back to the mothership
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
 init:
-- ps: $Env:LABEL = "CI" + $Env:APPVEYOR_BUILD_NUMBER.PadLeft(5, "0")
+ - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 before_build:
-- appveyor-retry dotnet restore -v Minimal
+ - appveyor-retry dotnet restore -v Minimal
 build_script:
-- dotnet build "src\SourceAFIS.Core" -c %CONFIGURATION% --no-dependencies --version-suffix %LABEL%
+ - dotnet build "src\SourceAFIS.Core" -c %CONFIGURATION% --no-dependencies --version-suffix %APPVEYOR_BUILD_NUMBER%
 after_build:
-- dotnet pack "src\SourceAFIS.Core" -c %CONFIGURATION% --no-build --version-suffix %LABEL% -o artifacts
+ - dotnet pack "src\SourceAFIS.Core" -c %CONFIGURATION% --no-build --version-suffix %APPVEYOR_BUILD_NUMBER% -o artifacts
 test_script:
-- dotnet test "tests\SourceAFIS.Core.Tests" -c %CONFIGURATION%
+ - dotnet test "tests\SourceAFIS.Core.Tests" -c %CONFIGURATION%
 artifacts:
-- path: artifacts\**\*.*
+ - path: artifacts\**\*.*
 cache:
-- '%USERPROFILE%\.nuget\packages'
+ - '%USERPROFILE%\.nuget\packages'
+ on_finish:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
