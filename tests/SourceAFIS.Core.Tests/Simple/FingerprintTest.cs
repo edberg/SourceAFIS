@@ -77,7 +77,7 @@ namespace SourceAFIS.Tests.Simple
         public void AsBitmap()
         {
             Fingerprint fp = new Fingerprint();
-            Bitmap bitmap = new Bitmap(Bitmap.FromFile(Settings.SomeFingerprintPath)); ;
+            Bitmap bitmap = Settings.SomeFingerprint;
 
             fp.AsBitmap = bitmap;
             Assert.IsNotNull(fp.Image);
@@ -159,12 +159,11 @@ namespace SourceAFIS.Tests.Simple
             afis.Threshold = 0;
             Assert.That(afis.Verify(person1, person2) > afis.Verify(person1, person3));
 
-            string isoFolder = Settings.IsoTemplatePath;
-            fp1.AsIsoTemplate = File.ReadAllBytes(Path.Combine(isoFolder, "1_1.ist"));
-            fp2.AsIsoTemplate = File.ReadAllBytes(Path.Combine(isoFolder, "1_2.ist"));
-            person3.Fingerprints[0].AsIsoTemplate = File.ReadAllBytes(Path.Combine(isoFolder, "2_2.ist"));
+            fp1.AsIsoTemplate = Settings.Template1_1;
+            fp2.AsIsoTemplate = Settings.Template1_2;
+            person3.Fingerprints[0].AsIsoTemplate = Settings.Template2_2;
             Assert.That(afis.Verify(person1, person2) > afis.Verify(person2, person3));
-            fp2.AsIsoTemplate = File.ReadAllBytes(Path.Combine(isoFolder, "2_1.ist"));
+            fp2.AsIsoTemplate = Settings.Template2_2;
             Assert.That(afis.Verify(person1, person2) < afis.Verify(person2, person3));
 
             fp1.AsIsoTemplate = null;

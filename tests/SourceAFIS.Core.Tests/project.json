@@ -3,10 +3,20 @@
   "title": "SourceAFIS NUnit Tests",
   "copyright": "BSD license",
 
+  "buildOptions": {
+    "embed": {
+      "include": [
+        "Data/Images/*.*",
+        "Data/IsoTemplates/*.*"
+      ]
+    }
+  },
+
   "dependencies": {
     "NUnit": "3.4.1",
     "dotnet-test-nunit": "3.4.0-beta-2",
-    "SourceAFIS.Core": "1.8.0-*"
+    "SourceAFIS.Core": "1.8.0-*",
+    "System.Resources.ResourceManager" : "4.0.1"
   },
 
   "testRunner": "nunit",
